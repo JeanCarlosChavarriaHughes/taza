@@ -1,0 +1,36 @@
+<ion-header>
+	<ion-navbar color="dark">
+		<ion-buttons start>
+			<button menuToggle>
+				<ion-icon name="menu"></ion-icon>
+			</button>
+		</ion-buttons>
+
+		<ion-title>
+			Clientes
+		</ion-title>
+
+		<ion-buttons end>
+			<button ion-button icon-only>
+				<ion-icon name="search"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content color="dark">
+	<ion-card *ngFor="let order of orders">
+		<ion-card-header>
+			{{ order.Producto }} {{ order.Total }}
+		</ion-card-header>
+		<ion-card-content>
+			 Cantidad: {{order.Cantidad}}
+		</ion-card-content>
+	</ion-card>
+	</ion-content>
+
+<ion-footer>
+	<button (click)="getOrders()" ion-button block large color="primary">
+		Cargar Ordenes
+		</button>
+</ion-footer>

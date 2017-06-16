@@ -1,0 +1,29 @@
+<ion-header>
+
+	<ion-navbar color="dark">
+		<ion-title>Cliente</ion-title>
+	</ion-navbar>
+
+</ion-header>
+<ion-content>
+ <ion-list>
+		<ion-item>
+		 <ion-label floating>Nombre</ion-label>
+		 <ion-input type="text"></ion-input>
+	 </ion-item>
+	 <ion-item>
+		 <ion-label floating >Apellido</ion-label>
+		 <ion-input type="text"></ion-input>
+	 </ion-item>
+	 <ion-item>
+		 <ion-label floating>Observación</ion-label>
+		 <ion-input type="text"></ion-input>
+	 </ion-item>
+ </ion-list>
+</ion-content>
+<ion-footer>
+	<ion-toolbar>
+		<button ion-button block large color="primary" (click)="getClients()">Cargar clientes</button>
+		<button ion-button block large color="primary">Guardar</button>
+	</ion-toolbar>
+</ion-footer>
