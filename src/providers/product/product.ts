@@ -9,7 +9,7 @@ export class ProductProvider {
 	}
 
 	getProducts() {
-		let products = this.http.get(`http://imagineing.ddns.net:8181/api/restaurant`);
+		let products = this.http.get(`http://imagineing.ddns.net:8181/api/product`);
 		return products;
 	}
 

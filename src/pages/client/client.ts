@@ -11,8 +11,10 @@ import { ClientProvider } from './../../providers/client/client';
 })
 export class ClientPage implements OnInit {
 	public clients: any;
+	tabBarElement: any;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, private clientProvider: ClientProvider) {
+		this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
 	}
 
 	ngOnInit() {
@@ -28,5 +30,16 @@ export class ClientPage implements OnInit {
 			err => console.log(err),
 			() => console.log('get clients completed'),
 		);
+	}
+	ionViewWillEnter() {
+		this.tabBarElement.style.display = 'none';
+	}
+
+	ionViewWillLeave() {
+		this.tabBarElement.style.display = 'flex';
+	}
+
+	takeMeBack() {
+		this.navCtrl.parent.select(0);
 	}
 }
