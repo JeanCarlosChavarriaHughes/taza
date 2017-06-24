@@ -19,18 +19,15 @@
 </ion-header>
 
 <ion-content color="dark">
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
 	<ion-card *ngFor="let order of orders">
 		<ion-card-header>
 			{{ order.Producto }} {{ order.Total }}
 		</ion-card-header>
 		<ion-card-content>
-			 Cantidad: {{order.Cantidad}}
+			Cantidad: {{order.Cantidad}}
 		</ion-card-content>
 	</ion-card>
-	</ion-content>
-
-<ion-footer>
-	<button (click)="getOrders()" ion-button block large color="primary">
-		Cargar Ordenes
-		</button>
-</ion-footer>
+</ion-content>

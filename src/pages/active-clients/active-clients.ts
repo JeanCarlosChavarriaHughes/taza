@@ -38,4 +38,17 @@ export class ActiveClientsPage implements OnInit {
 		// causing the nav controller to animate the new page in
 		this.navCtrl.push(ClientPage);
 	}
+
+	goToClient(client: any) {
+		console.log(client.nombreCliente + ' ' + client.apellidoCliente + ' selected');
+	}
+
+		doRefresh(refresher) {
+		console.log('Begin async operation', refresher);
+		setTimeout(() => {
+			this.getClientAccounts();
+			console.log('refresh completed');
+			refresher.complete();
+		}, 1000);
+	}
 }

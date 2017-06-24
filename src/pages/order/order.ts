@@ -28,4 +28,13 @@ export class OrderPage implements OnInit {
 			() => console.log('get orders completed'),
 		);
 	}
+
+	doRefresh(refresher) {
+		console.log('Begin async operation', refresher);
+		setTimeout(() => {
+			this.getOrders();
+			console.log('refresh completed');
+			refresher.complete();
+		}, 1000);
+	}
 }

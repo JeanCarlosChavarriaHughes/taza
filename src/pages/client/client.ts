@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FormControl } from '@angular/forms';
 
 // Provider
 import { ClientProvider } from './../../providers/client/client';
@@ -10,11 +11,16 @@ import { ClientProvider } from './../../providers/client/client';
 	templateUrl: 'client.html',
 })
 export class ClientPage implements OnInit {
+	// tslint:disable-next-line:no-inferrable-types
+	searching: boolean = false;
+	searchControl: FormControl;
 	public clients: any;
-	tabBarElement: any;
+	private tabBarElement: any;
+	private searchClient: string;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, private clientProvider: ClientProvider) {
 		this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
+		this.searchControl = new FormControl();
 	}
 
 	ngOnInit() {
@@ -23,7 +29,7 @@ export class ClientPage implements OnInit {
 
 	getClients() {
 		// Metodo llamado desde ClientProvider
-		this.clientProvider.getClients().subscribe(
+		this.clientProvider.getClients(this.searchClient).subscribe(
 			data => {
 				this.clients = data.json();
 			},
@@ -31,6 +37,7 @@ export class ClientPage implements OnInit {
 			() => console.log('get clients completed'),
 		);
 	}
+
 	ionViewWillEnter() {
 		this.tabBarElement.style.display = 'none';
 	}
@@ -40,6 +47,16 @@ export class ClientPage implements OnInit {
 	}
 
 	takeMeBack() {
-		this.navCtrl.parent.select(0);
+		this.navCtrl.parent.select(2);
+		console.log('take me back pressed');
+	}
+
+	doRefresh(refresher) {
+		console.log('Begin async operation', refresher);
+		setTimeout(() => {
+			this.getClients();
+			console.log('refresh completed');
+			refresher.complete();
+		}, 1000);
 	}
 }

@@ -1,18 +1,13 @@
 <ion-header>
 	<ion-navbar color="dark">
 		<ion-buttons start>
-			<!--<button menuToggle>
+			<button ion-button icon-only menuToggle>
 				<ion-icon name="menu"></ion-icon>
-			</button>-->
-			<button ion-button icon-only menuToggle (click)="takeMeBack()">
-			<ion-icon name="menu"></ion-icon>
-		</button>
+			</button>
 		</ion-buttons>
-
 		<ion-title>
 			Clientes
 		</ion-title>
-
 		<ion-buttons end>
 			<button ion-button icon-only>
 				<ion-icon name="search"></ion-icon>
@@ -22,6 +17,9 @@
 </ion-header>
 
 <ion-content color="dark">
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
 	<ion-card *ngFor="let client of clients">
 		<ion-card-header>
 			{{ client.nombreCliente }} {{ client.apellidoCliente }}
@@ -31,9 +29,3 @@
 		</ion-card-content>
 	</ion-card>
 </ion-content>
-
-<ion-footer>
-	<button (click)="getClients()" ion-button block large color="primary">
-		Cargar Clientes
-		</button>
-</ion-footer>

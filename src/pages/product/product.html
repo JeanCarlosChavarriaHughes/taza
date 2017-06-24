@@ -19,6 +19,9 @@
 </ion-header>
 
 <ion-content color="dark">
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
 	<ion-card *ngFor="let product of products">
 		<ion-card-header>
 			{{ product.descripcionProducto }} {{ product.precioProducto }}
@@ -30,10 +33,4 @@
 			</ion-item>
 		</ion-card-content>
 	</ion-card>
-	</ion-content>
-
-	<ion-footer>
-		<button (click)="getProducts()" ion-button block large color="primary">
-		Cargar Productos
-		</button>
-	</ion-footer>
+</ion-content>

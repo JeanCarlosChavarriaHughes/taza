@@ -25,7 +25,16 @@ export class ProductPage implements OnInit {
 				this.products = data.json();
 			},
 			err => console.log(err),
-			() => console.log('get producti completed'),
+			() => console.log('get products completed'),
 		);
+	}
+
+	doRefresh(refresher) {
+		console.log('Begin async operation', refresher);
+		setTimeout(() => {
+			this.getProducts();
+			console.log('refresh completed');
+			refresher.complete();
+		}, 1000);
 	}
 }
