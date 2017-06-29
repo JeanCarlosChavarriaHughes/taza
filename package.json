@@ -1,10 +1,14 @@
 {
 	"name": "taza",
-	"version": "0.0.7",
+	"version": "0.1.0-alpha",
 	"author": {
 		"name": "ImagineIng"
 	},
 	"description": "TAZA:",
+	"config": {
+		"ionic_source_map": "source-map",
+		"ionic_generate_source_map": true
+	},
 	"homepage": "https://github.com/JeanCarlosChavarriaHughes/taza#readme",
 	"license": "AGPL-3.0",
 	"contributors": [

@@ -43,7 +43,7 @@ export class ActiveClientsPage implements OnInit {
 		console.log(client.nombreCliente + ' ' + client.apellidoCliente + ' selected');
 	}
 
-		doRefresh(refresher) {
+	doRefresh(refresher) {
 		console.log('Begin async operation', refresher);
 		setTimeout(() => {
 			this.getClientAccounts();
