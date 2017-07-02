@@ -35,6 +35,7 @@
 </ion-content>
 
 <ion-footer>
-	<button ion-button full color="primary" (click)="displayOrder()">Ver orden</button>
-	<button ion-button full color="danger" (click)="clearOrder()">Limpiar orden</button>
+	<h4>Agregados: {{press}}</h4>
+	<button ion-button block color="primary" (click)="displayOrder()">Ver orden</button>
+	<button ion-button block color="danger" (click)="clearOrder(product)">Limpiar orden</button>
 </ion-footer>

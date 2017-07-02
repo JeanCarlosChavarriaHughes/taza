@@ -21,7 +21,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-list>
-    <ion-item *ngFor="let client of clientAccounts" (click)="goToClient(client)">
+    <ion-item *ngFor="let client of clientAccounts" (press)="goToClient(client)">
       {{client.nombreCliente }} {{client.apellidoCliente}} {{client.TotalPagar}}
     </ion-item>
   </ion-list>

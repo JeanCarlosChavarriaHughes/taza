@@ -12,10 +12,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ClientPage } from './../pages/client/client';
 import { ActiveClientsPage } from '../pages/active-clients/active-clients';
-import { OrderPage } from './../pages/order/order';
-import { ProductPage } from './../pages/product/product';
 
-// tslint:disable-next-line:interface-name
 export interface PageInterface {
 	title: string;
 	name: string;
@@ -37,8 +34,8 @@ export class TAZA {
 	// the left menu only works after login
 	// the login page disables the left menu
 	appPages: PageInterface[] = [
-		{ title: 'Clientes', name: 'ClientPage', component: ClientPage, icon: 'contact' },
-		{ title: 'Restaurante', name: 'TabsPage', component: TabsPage, tabComponent: ActiveClientsPage, index: 0, icon: 'people' },
+		{ component: ClientPage,  icon: 'contact', name: 'ClientPage', title: 'Clientes' },
+		{ component: TabsPage, icon: 'people', index: 0, name: 'TabsPage', tabComponent: ActiveClientsPage, title: 'Restaurante' },
 	];
 	rootPage: any;
 

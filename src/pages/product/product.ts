@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+// Pages
+import { OrderListPage } from './../order-list/order-list';
 // Providers
 import { ProductProvider } from './../../providers/product/product';
 
@@ -13,7 +15,7 @@ export class ProductPage implements OnInit {
 	// tslint:disable-next-line:no-inferrable-types
 	press: number = 0;
 	public products: any;
-	public checkedProducts: Array<any> = [];
+	public orderList: Array<Object> = [];
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, private productProvider: ProductProvider) {
 	}
@@ -33,17 +35,25 @@ export class ProductPage implements OnInit {
 	}
 
 	pressEvent(product) {
-		console.log(this.press++);
-		this.checkedProducts.push(product.descripcionProducto, product.precioProducto, product.cantidad);
+		console.log('Agregados: ' + (this.press++ + 1));
+
+		this.orderList.push({
+			descripcionProducto: product.descripcionProducto,
+			total: product.precioProducto * product.cantidad,
+		});
 	}
 
 	displayOrder() {
-		console.log(this.checkedProducts);
+		console.dir(this.orderList);
+		this.navCtrl.push(OrderListPage, {
+			orderList: this.orderList,
+		});
+		this.clearOrder();
 	}
 
 	clearOrder() {
-		this.checkedProducts = [];
-		console.log(this.checkedProducts);
+		this.orderList = [];
+		console.log(this.orderList);
 	}
 
 	doRefresh(refresher) {

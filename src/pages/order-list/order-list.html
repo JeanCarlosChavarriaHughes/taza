@@ -1,0 +1,19 @@
+<ion-header>
+
+	<ion-navbar color="dark">
+		<ion-title>Lista de ordenes</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+<ion-content color="dark">
+	<ion-list>
+		<ion-item *ngFor="let order of orderList">
+			{{order.descripcionProducto }} {{order.total}}
+		</ion-item>
+	</ion-list>
+</ion-content>
+
+<ion-footer padding>
+	<button ion-button block (click)="displayList()">Ver lista</button>
+</ion-footer>

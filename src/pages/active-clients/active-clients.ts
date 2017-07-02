@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 // Pages
 import { ClientPage } from '../client/client';
+import { OrderPage } from './../order/order';
 
 // Providers
 import { ClientProvider } from '../../providers/client/client';
@@ -40,7 +41,10 @@ export class ActiveClientsPage implements OnInit {
 	}
 
 	goToClient(client: any) {
-		console.log(client.nombreCliente + ' ' + client.apellidoCliente + ' selected');
+		// console.log(client.nombreCliente + ' ' + client.apellidoCliente + ' selected');
+		this.navCtrl.push(OrderPage, {
+			clientSelected: client,
+		});
 	}
 
 	doRefresh(refresher) {

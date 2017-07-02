@@ -9,11 +9,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 // Pages
-import { TabsPage } from '../pages/tabs/tabs';
-import { ClientPage } from './../pages/client/client';
 import { ActiveClientsPage } from '../pages/active-clients/active-clients';
+import { ClientPage } from './../pages/client/client';
+import { OrderListPage } from './../pages/order-list/order-list';
 import { OrderPage } from './../pages/order/order';
 import { ProductPage } from './../pages/product/product';
+import { TabsPage } from '../pages/tabs/tabs';
 
 // Providers
 import { ClientProvider } from '../providers/client/client';
@@ -24,20 +25,22 @@ import { OrderProvider } from '../providers/order/order';
 	bootstrap: [IonicApp],
 	declarations: [
 		TAZA,
-		TabsPage,
-		ClientPage,
 		ActiveClientsPage,
+		ClientPage,
+		OrderListPage,
 		OrderPage,
 		ProductPage,
+		TabsPage,
 	],
 
 	entryComponents: [
 		TAZA,
-		TabsPage,
-		ClientPage,
 		ActiveClientsPage,
+		ClientPage,
+		OrderListPage,
 		OrderPage,
 		ProductPage,
+		TabsPage,
 	],
 
 	imports: [
