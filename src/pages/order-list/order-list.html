@@ -1,19 +1,28 @@
 <ion-header>
-
-	<ion-navbar color="dark">
-		<ion-title>Lista de ordenes</ion-title>
-	</ion-navbar>
-
+  <ion-toolbar  color="dark">
+    <ion-title>
+      Lista de ordenes
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text showWhen="ios">Cancelar</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content color="dark">
 	<ion-list>
 		<ion-item *ngFor="let order of orderList">
-			{{order.descripcionProducto }} {{order.total}}
+			{{order.descripcionProducto }}
+			<ion-note item-end>
+				{{order.total}}
+			</ion-note>
 		</ion-item>
 	</ion-list>
 </ion-content>
 
 <ion-footer padding>
-	<button ion-button block (click)="displayList()">Ver lista</button>
+	<button ion-button full (click)="displayList()">Ver lista</button>
 </ion-footer>

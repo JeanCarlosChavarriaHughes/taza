@@ -11,6 +11,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 // Pages
 import { ActiveClientsPage } from '../pages/active-clients/active-clients';
 import { ClientPage } from './../pages/client/client';
+import { ClientFormPage } from './../pages/forms/client-form/client-form';
 import { OrderListPage } from './../pages/order-list/order-list';
 import { OrderPage } from './../pages/order/order';
 import { ProductPage } from './../pages/product/product';
@@ -20,12 +21,14 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { ClientProvider } from '../providers/client/client';
 import { ProductProvider } from '../providers/product/product';
 import { OrderProvider } from '../providers/order/order';
+import { BillProvider } from '../providers/bill/bill';
 
 @NgModule({
 	bootstrap: [IonicApp],
 	declarations: [
 		TAZA,
 		ActiveClientsPage,
+		ClientFormPage,
 		ClientPage,
 		OrderListPage,
 		OrderPage,
@@ -36,6 +39,7 @@ import { OrderProvider } from '../providers/order/order';
 	entryComponents: [
 		TAZA,
 		ActiveClientsPage,
+		ClientFormPage,
 		ClientPage,
 		OrderListPage,
 		OrderPage,
@@ -52,7 +56,7 @@ import { OrderProvider } from '../providers/order/order';
 					tabsPlacement: 'top',
 				},
 				ios: {
-					tabsPlacement: 'top',
+					tabsPlacement: 'bottom',
 				},
 				windows:
 				{
@@ -70,6 +74,7 @@ import { OrderProvider } from '../providers/order/order';
 		ClientProvider,
 		ProductProvider,
 		OrderProvider,
+		BillProvider,
 	],
 })
 export class AppModule { }

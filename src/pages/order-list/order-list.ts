@@ -1,33 +1,45 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams, ViewController, AlertController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-	selector: 'page-order-list',
+	selector: 'client-order-list',
 	templateUrl: 'order-list.html',
 })
 export class OrderListPage {
-	tabBarElement: any;
-	public orderList: any;
+	private orderList: object;
+	private client: number;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams) {
-		this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
+	constructor(
+		public alertCtrl: AlertController,
+		public navParams: NavParams,
+		public viewCtrl: ViewController) {
 		this.orderList = navParams.get('orderList');
+		this.client = navParams.get('clientSelected');
 	}
 
 	ionViewDidLoad() {
 	}
 
-	ionViewWillEnter() {
-		this.tabBarElement.style.display = 'none';
-	}
-
-	ionViewWillLeave() {
-		this.tabBarElement.style.display = 'flex';
-	}
-
 	displayList() {
 		console.dir(this.orderList);
+		if (this.client === undefined) {
+			this.showAlert();
+		} else {
+			console.dir(this.client);
+		}
 	}
 
+	showAlert() {
+		let alert = this.alertCtrl.create({
+			buttons: ['Aceptar'],
+			subTitle: 'No ha seleccionado ningun cliente',
+			title: 'Ordenes',
+		});
+		alert.present();
+	}
+
+	dismiss() {
+		this.viewCtrl.dismiss();
+	}
 }

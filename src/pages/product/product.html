@@ -1,41 +1,69 @@
 <ion-header>
-	<ion-navbar color="dark">
-		<button ion-button menuToggle>
+  <ion-navbar color="dark">
+    <!-- <button ion-button menuToggle>
 			<ion-icon name="menu"></ion-icon>
-		</button>
+		</button> -->
 
-		<ion-title>
+    <!-- <ion-title>
 			Productos
-		</ion-title>
+		</ion-title> -->
 
-		<ion-buttons end>
-			<button ion-button icon-only>
+    <ion-buttons end>
+      <button ion-button icon-only>
 				<ion-icon name="search"></ion-icon>
 			</button>
-		</ion-buttons>
-	</ion-navbar>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
 <ion-content color="dark">
-	<ion-refresher (ionRefresh)="doRefresh($event)">
-		<ion-refresher-content></ion-refresher-content>
-	</ion-refresher>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
-	<ion-card *ngFor="let product of products" (press)="pressEvent(product)">
-		<ion-card-header>
-			{{ product.descripcionProducto }} {{ product.precioProducto }}
-		</ion-card-header>
-		<ion-card-content>
-			<ion-item>
-				<ion-label>Cantidad</ion-label>
-				<ion-input [(ngModel)]="product.cantidad" type="tel"></ion-input>
-			</ion-item>
-		</ion-card-content>
-	</ion-card>
+  <ion-list>
+    <ion-item *ngFor="let product of products">
+      <ion-label> {{product.descripcionProducto}}</ion-label>
+      <button color="danger" ion-button icon-only clear item-end icon-left [disabled]="product.cantidad<=0" (click)="decrementQuantity(product)">
+					<ion-icon ios="ios-remove" md="md-remove"></ion-icon>
+				</button>
+					<ion-input [(ngModel)]="product.cantidad" [readonly]="true" placeholder="0" type="tel"></ion-input>
+      <button color="secondary" ion-button clear item-end icon-left (click)="incrementQuantity(product)">
+					<ion-icon ios="ios-add" md="md-add"></ion-icon>
+				</button>
+      <ion-checkbox checked="false" [(ngModel)]="product.checked" (ionChange)="addProduct(product)"></ion-checkbox>
+      <ion-note item-end>
+        {{product.precioProducto}}
+      </ion-note>
+    </ion-item>
+  </ion-list>
+
+  <!-- <ion-card *ngFor="let product of products" (press)="addProduct(product)">
+    <ion-card-header> {{ product.descripcionProducto }} {{ product.precioProducto }}
+
+      <ion-input [(ngModel)]="product.cantidad" placeholder="0" type="tel"></ion-input>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <button color="danger" ion-button icon-only round large [disabled]="product.cantidad<=0" (click)="decrementQuantity(product)">
+					<ion-icon ios="ios-remove" md="md-remove"></ion-icon>
+				</button>
+    <button color="light" ion-button icon-only round large (click)="incrementQuantity(product)">
+					<ion-icon ios="ios-add" md="md-add"></ion-icon>
+				</button>
+    <button ion-button clear item-end icon-left (click)="removeProduct(product.idProducto)">
+			<ion-icon ios="ios-close" md="md-close"></ion-icon>
+			Eliminar
+			</button>
+    </ion-item>
+    </ion-card-content>
+    </ion-card> -->
+
 </ion-content>
 
-<ion-footer>
-	<h4>Agregados: {{press}}</h4>
-	<button ion-button block color="primary" (click)="displayOrder()">Ver orden</button>
-	<button ion-button block color="danger" (click)="clearOrder(product)">Limpiar orden</button>
+<ion-footer padding>
+  <h4>Agregados: {{press}}</h4>
+  <button ion-button full color="primary" (click)="displayOrder()">Ver orden</button>
+  <button ion-button full color="primary" (click)="displayClient()">Ver cliente</button>
+  <button ion-button full color="danger" (click)="clearOrder(product)">Limpiar orden</button>
 </ion-footer>

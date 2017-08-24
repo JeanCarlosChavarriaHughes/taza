@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, ModalController } from 'ionic-angular';
 
 // Pages
-import { ClientPage } from '../client/client';
-import { OrderPage } from './../order/order';
+import { ClientFormPage } from './../forms/client-form/client-form';
+import { ClientPage } from './../client/client';
 
 // Providers
 import { ClientProvider } from '../../providers/client/client';
@@ -14,9 +14,15 @@ import { ClientProvider } from '../../providers/client/client';
 	templateUrl: 'active-clients.html',
 })
 export class ActiveClientsPage implements OnInit {
+
 	public clientAccounts: any;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, private clientProvider: ClientProvider) {
+	constructor(
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		private clientProvider: ClientProvider,
+		private events: Events,
+		private modalCtrl: ModalController) {
 	}
 
 	ngOnInit() {
@@ -27,24 +33,20 @@ export class ActiveClientsPage implements OnInit {
 		// Metodo llamado desde ClientProvider
 		this.clientProvider.getClientAccounts().subscribe(
 			data => {
-				this.clientAccounts = data.json();
+				this.clientAccounts = data;
 			},
 			err => console.log(err),
 			() => console.log('get client accounts completed'),
 		);
 	}
 
-	goToOtherPage() {
-		// push another page onto the history stack
-		// causing the nav controller to animate the new page in
-		this.navCtrl.push(ClientPage);
+	openClientForm() {
+		let modal = this.modalCtrl.create(ClientFormPage);
+		modal.present();
 	}
-
 	goToClient(client: any) {
-		// console.log(client.nombreCliente + ' ' + client.apellidoCliente + ' selected');
-		this.navCtrl.push(OrderPage, {
-			clientSelected: client,
-		});
+		console.dir(client);
+		this.events.publish('tab-client', 1, client);
 	}
 
 	doRefresh(refresher) {

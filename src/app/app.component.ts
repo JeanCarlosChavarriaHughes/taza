@@ -12,7 +12,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ClientPage } from './../pages/client/client';
 import { ActiveClientsPage } from '../pages/active-clients/active-clients';
-
+import { ProductPage } from './../pages/product/product';
+import { OrderPage } from './../pages/order/order';
 export interface PageInterface {
 	title: string;
 	name: string;
@@ -35,7 +36,9 @@ export class TAZA {
 	// the login page disables the left menu
 	appPages: PageInterface[] = [
 		{ component: ClientPage,  icon: 'contact', name: 'ClientPage', title: 'Clientes' },
-		{ component: TabsPage, icon: 'people', index: 0, name: 'TabsPage', tabComponent: ActiveClientsPage, title: 'Restaurante' },
+		{ component: TabsPage, icon: 'people', index: 0, name: 'TabsPage', tabComponent: ActiveClientsPage, title: 'Clientes activos' },
+		{ component: TabsPage, icon: 'list', index: 1, name: 'TabsPage', tabComponent: OrderPage, title: 'Ordenes' },
+		{ component: TabsPage, icon: 'cart', index: 2, name: 'TabsPage', tabComponent: ProductPage, title: 'Productos' },
 	];
 	rootPage: any;
 

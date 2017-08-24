@@ -28,7 +28,6 @@ export class ClientPage implements OnInit {
 	}
 
 	getClients() {
-		// Metodo llamado desde ClientProvider
 		this.clientProvider.getClients(this.searchClient).subscribe(
 			data => {
 				this.clients = data.json();
